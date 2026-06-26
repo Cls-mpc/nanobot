@@ -1,10 +1,10 @@
+import os
 import telebot
 from telebot import types
 import time
 import threading
-import os
 
-TOKEN = os.getenv("8332636276:AAHunYZlJ7Vdw0fjM-9ScbKr4iepaWmkEfg")
+TOKEN = os.getenv("TOKEN")
 OWNER_ID = 8746755745
 
 bot = telebot.TeleBot(TOKEN)
