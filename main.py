@@ -14,6 +14,13 @@ today_users = set()
 
 banned_users = set()
 
+def update_user(user):
+
+    users[user.id] = {
+        "username": user.username,
+        "name": user.first_name
+    }
+
 message_links = {}
 
 broadcast_wait = False
@@ -53,13 +60,10 @@ def start(message):
 
     user = message.from_user
 
-    if user.id not in users:
-        users[user.id] = {
-            "username": user.username,
-            "name": user.first_name
-        }
+if user.id not in users:
+    today_users.add(user.id)
 
-        today_users.add(user.id)
+update_user(user)
 
     remove = types.ReplyKeyboardRemove()
 
@@ -660,6 +664,8 @@ def messages(message):
     # ПОЛЬЗОВАТЕЛЬ
     user = message.from_user
 
+    update_user(user)
+    
     text = (
         "<i>💬 У тебя новое анонимное сообщение!</i>\n\n"
         f"<blockquote>{message.text}</blockquote>\n\n"
